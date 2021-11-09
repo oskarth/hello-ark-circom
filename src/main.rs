@@ -11,9 +11,12 @@ fn main() {
     println!("Load WASM and R1CS for witness and proof generation");
 
     // Load the WASM and R1CS for witness and proof generation
+    // TODO: Not working with the circuit I generated for some reason
     let cfg = CircomConfig::<Bn254>::new(
-        "./circuits/multiplier2.wasm",
-        "./circuits/multiplier2.r1cs",
+        // "./circuits/multiplier2.wasm",
+        // "./circuits/multiplier2.r1cs",
+        "./circuits/mycircuit.wasm",
+        "./circuits/mycircuit.r1cs",
     ).unwrap();
 
     println!("Build public input config");

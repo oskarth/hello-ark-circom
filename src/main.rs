@@ -16,7 +16,7 @@ fn main() {
     let cfg = CircomConfig::<Bn254>::new(
         "./mycircuit.wasm",
         "./mycircuit.r1cs",
-    )?;
+    ).unwrap();
 
     // Insert our public inputs as key value pairs
     let mut builder = CircomBuilder::new(cfg);
@@ -28,19 +28,19 @@ fn main() {
 
     // Run a trusted setup
     let mut rng = thread_rng();
-    let params = generate_random_parameters::<Bn254, _, _>(circom, &mut rng)?;
+    let params = generate_random_parameters::<Bn254, _, _>(circom, &mut rng).unwrap();
 
     // Get the populated instance of the circuit with the witness
-    let circom = builder.build()?;
+    let circom = builder.build().unwrap();
 
     let inputs = circom.get_public_inputs().unwrap();
 
     // Generate the proof
-    let proof = prove(circom, &params, &mut rng)?;
+    let proof = prove(circom, &params, &mut rng).unwrap();
 
     // Check that the proof is valid
     let pvk = prepare_verifying_key(&params.vk);
-    let verified = verify_proof(&pvk, &proof, &inputs)?;
+    let verified = verify_proof(&pvk, &proof, &inputs).unwrap();
     assert!(verified);
 
 }

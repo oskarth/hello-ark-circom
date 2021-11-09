@@ -6,3 +6,12 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+# Some Rust git config issue / package typo?
+ark-circom = { git = "https://github.com/gakonst/ark-circom" }
+#ark-circom = { git = "ssh://git@github.com/gakonst/ark-circom.git" }
+
+# Possibly needed to build:
+# cargo_metadata = "0.14.1"
+ethers = { git = "https://github.com/gakonst/ethers-rs" }
+
+# TODO Add dependencies here

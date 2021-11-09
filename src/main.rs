@@ -7,7 +7,7 @@ use ark_groth16::{
     create_random_proof as prove, generate_random_parameters, prepare_verifying_key, verify_proof,
 };
 
-fn main() {
+fn groth16_proof() -> Result<()> {
     println!("Load WASM and R1CS for witness and proof generation");
 
     // Load the WASM and R1CS for witness and proof generation
@@ -17,7 +17,7 @@ fn main() {
         // "./circuits/multiplier2.r1cs",
         "./circuits/mycircuit.wasm",
         "./circuits/mycircuit.r1cs",
-    ).unwrap();
+    )?;
 
     println!("Build public input config");
 
@@ -28,32 +28,43 @@ fn main() {
 
     println!("Create setup");
 
-    // Create an empty instance for setting it up
+    // create an empty instance for setting it up
     let circom = builder.setup();
 
     println!("Run trusted setup");
 
     // Run a trusted setup
     let mut rng = thread_rng();
-    let params = generate_random_parameters::<Bn254, _, _>(circom, &mut rng).unwrap();
+    let params = generate_random_parameters::<Bn254, _, _>(circom, &mut rng)?;
 
     println!("Get circuit with witness");
 
     // Get the populated instance of the circuit with the witness
-    let circom = builder.build().unwrap();
+    let circom = builder.build()?;
 
     let inputs = circom.get_public_inputs().unwrap();
 
+    // TODO Print actual proof
     println!("Generate proof");
 
-    // Generate the proof
-    let proof = prove(circom, &params, &mut rng).unwrap();
+    let proof = prove(circom, &params, &mut rng)?;
+
+    let pvk = prepare_verifying_key(&params.vk);
 
     println!("Validate proof");
 
     // Check that the proof is valid
-    let pvk = prepare_verifying_key(&params.vk);
-    let verified = verify_proof(&pvk, &proof, &inputs).unwrap();
+    let verified = verify_proof(&pvk, &proof, &inputs)?;
+
     assert!(verified);
 
+    Ok(())
+}
+
+fn main() {
+    match groth16_proof() {
+        Ok(_val) => println!("All OK"),
+        Err(err) =>
+            panic!("Error: {:?}", err),
+    }
 }

@@ -11,11 +11,10 @@ use ark_groth16::{
 fn main() {
     println!("Hello, world!");
 
-    // TODO Add these
     // Load the WASM and R1CS for witness and proof generation
     let cfg = CircomConfig::<Bn254>::new(
-        "./mycircuit.wasm",
-        "./mycircuit.r1cs",
+        "./circuits/multiplier2.wasm",
+        "./circuits/multiplier2.r1cs",
     ).unwrap();
 
     // Insert our public inputs as key value pairs

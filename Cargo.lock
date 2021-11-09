@@ -1595,7 +1595,11 @@ dependencies = [
 name = "hello-ark-circom"
 version = "0.1.0"
 dependencies = [
+ "ark-bn254",
  "ark-circom",
+ "ark-groth16",
+ "ark-std",
+ "color-eyre",
  "ethers",
 ]
 

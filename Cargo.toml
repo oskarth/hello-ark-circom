@@ -14,4 +14,10 @@ ark-circom = { git = "https://github.com/gakonst/ark-circom" }
 # cargo_metadata = "0.14.1"
 ethers = { git = "https://github.com/gakonst/ethers-rs" }
 
-# TODO Add dependencies here
+# ZKP generation
+ark-std = { version = "0.3.0", default-features = false, features = ["parallel"] }
+ark-bn254 = { version = "0.3.0" }
+ark-groth16 = { git = "https://github.com/arkworks-rs/groth16", rev = "765817f", features = ["parallel"] }
+
+## Error handling
+color-eyre = "0.5"

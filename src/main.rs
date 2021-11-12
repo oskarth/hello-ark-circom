@@ -7,16 +7,19 @@ use ark_groth16::{
     create_random_proof as prove, generate_random_parameters, prepare_verifying_key, verify_proof,
 };
 
+// TODO: Run both circom-1 and circom-2 here? with flag
 fn groth16_proof() -> Result<()> {
     println!("Load WASM and R1CS for witness and proof generation");
 
     // Load the WASM and R1CS for witness and proof generation
     // TODO: Not working with the circuit I generated for some reason
     let cfg = CircomConfig::<Bn254>::new(
-        // "./circuits/multiplier2.wasm",
-        // "./circuits/multiplier2.r1cs",
-        "./circuits/mycircuit.wasm",
-        "./circuits/mycircuit.r1cs",
+        "./circuits/circom1_multiplier.wasm",
+        "./circuits/circom1_multiplier.r1cs",
+        //"./circuits/multiplier2.wasm",
+        //"./circuits/multiplier2.r1cs",
+        //"./circuits/mycircuit.wasm",
+        //"./circuits/mycircuit.r1cs",
     )?;
 
     println!("Build public input config");

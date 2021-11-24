@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 # Some Rust git config issue / package typo?
 #ark-circom = { git = "https://github.com/oskarth/ark-circom" }
-ark-circom = { git = "https://github.com/oskarth/ark-circom", features = ["circom-2"] }
+ark-circom = { git = "https://github.com/oskarth/ark-circom", features = ["circom-2"], branch = "circom-2-support" }
 #ark-circom = { git = "ssh://git@github.com/gakonst/ark-circom.git" }
 
 # Possibly needed to build:

@@ -79,7 +79,7 @@ dependencies = [
 [[package]]
 name = "ark-circom"
 version = "0.1.0"
-source = "git+https://github.com/oskarth/ark-circom#729ea33d0ec199cc451dba16be314cc1b1ce3c0f"
+source = "git+https://github.com/oskarth/ark-circom?branch=circom-2-support#729ea33d0ec199cc451dba16be314cc1b1ce3c0f"
 dependencies = [
  "ark-bn254",
  "ark-ec",

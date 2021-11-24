@@ -14,10 +14,11 @@ fn groth16_proof() -> Result<()> {
     // Load the WASM and R1CS for witness and proof generation
     // TODO: Not working with the circuit I generated for some reason
     let cfg = CircomConfig::<Bn254>::new(
-        "./circuits/circom1_multiplier.wasm",
-        "./circuits/circom1_multiplier.r1cs",
-        //"./circuits/multiplier2.wasm",
-        //"./circuits/multiplier2.r1cs",
+        //"./circuits/circom1_multiplier.wasm",
+        //"./circuits/circom1_multiplier.r1cs",
+        // Circom 2.0
+        "./circuits/multiplier2.wasm",
+        "./circuits/multiplier2.r1cs",
         //"./circuits/mycircuit.wasm",
         //"./circuits/mycircuit.r1cs",
     )?;
